@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Рандомное зелье", 
     page_icon="🧪"
 )
-st.header("🧪 Рандомное зелье (WIP)")
+st.header("🧪 Рандомное зелье")
 st.write("Тут можно зароллить свойства зелья для его описания")
 st.write("Источник: https://tentaculus.ru/archive/tables/random_potions.html")
 
