@@ -5,7 +5,7 @@ import requests
 POISON_NAME = "Яд"
 POTION_NAME = "Зелье"
 MAGIC_NAME = "Магическое зелье"
-PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/plants_table.json"
+PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
 PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
 
 st.set_page_config(
@@ -60,12 +60,15 @@ if __name__ == "__main__":
 
     if alchemy_type_eng == "magic":
         effect = get_plants(alchemy_type_eng, "effect")
-        st.selectbox('Основной ингридент:', ["Элементальная вода"])
-        selected_effect = st.selectbox('Второй ингридент:', effect)
+        effect.sort()
+        st.selectbox('Базовый ингридент:', ["Элементальная вода"])
+        selected_effect = st.selectbox('Основной ингридент:', effect)
         write_properties(selected_effect)
     else:
         effect = get_plants(alchemy_type_eng, "effect")
+        effect.sort()
         selected_effect = st.selectbox('Основной ингридент:', effect)
         mod = get_plants(alchemy_type_eng, "mod")
+        mod.sort()
         selected_mod = [st.selectbox('Модификатор 1:', mod), st.selectbox('Модификатор 2:', mod), st.selectbox('Модификатор 3:', mod)]
         write_properties(selected_effect, selected_mod)
