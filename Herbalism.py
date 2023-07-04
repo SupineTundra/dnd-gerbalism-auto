@@ -12,8 +12,8 @@ if (st.button("Короткие правила")):
     st.write("Модификатор Гербализма = **МДР / ИНТ + Профессиональный бонус**, если используется набор Гербалиста.")
     st.write("Результат успешной добычи указывается ДМом, броском кубика 1d4 как много ингредиентов добыл игрок в этой местности в соответствии с Экосистемами.")
 
-TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/terrain_roll_tables.json"
-PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/plants_table.json"
+TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/terrain_roll_tables.json"
+PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
 COMMON_TERRAIN_NAME = "Обычные"
 
 TERRAIN_ROLL_TABLES = requests.get(TERRAIN_ROLL_TABLES_URL).json()
