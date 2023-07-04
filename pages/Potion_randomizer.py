@@ -27,12 +27,12 @@ def roll_table(table_name, dice):
 if __name__ == "__main__":
     roll_button = st.button("Ролл!")
     if roll_button:
-        st.write(f'**Форма**: {roll_table("Форма", "1d12")}')
-        st.write(f'**Материал**: {roll_table("Материал", "1d12")}')
+        st.write(f'**Форма сосуда**: {roll_table("Форма", "1d12")}')
+        st.write(f'**Материал сосуда**: {roll_table("Материал", "1d12")}')
         st.write(f'**Крышка**: {roll_table("Крышка", "1d6")}')
-        st.write(f'**Цвет**: {roll_table("Цвет", "1d10")}')
+        st.write(f'**Цвет зелья**: {roll_table("Цвет", "1d10")}')
         st.write(f'**Запах**: {roll_table("Запах", "1d12")}')
         st.write(f'**Интенсивность запаха**: {roll_table("Интенсивность запаха", "1d10")}')
         st.write(f'**Вкус**: {roll_table("Вкус", "1d6")}')
         st.write(f'**Ингридиенты**: {roll_table(roll_table("Типы ингридиентов", "1d8"), "1d6")}, {roll_table(roll_table("Типы ингридиентов", "1d8"), "1d6")}, {roll_table(roll_table("Типы ингридиентов", "1d8"), "1d6")}')
-        st.write(f'**Реакция**: {roll_table("Реакция", "1d20")}')
+        st.write(f'**Алхимическая реакция**: {roll_table("Реакция", "1d20")}')
