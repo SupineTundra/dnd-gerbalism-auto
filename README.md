@@ -7,6 +7,8 @@
 streamlit run <путь_до_Herbalism.py>
 ```
 
+Либо можно просто пользовать по ссылке https://herbalism-dnd-auto.streamlit.app/
+
 
 ### Источники
 Переведенный источник: https://dnd.su/homebrew/articles/homebrew/109-gerbalizm_i_alkhimiya/
