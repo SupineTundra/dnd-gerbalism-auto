@@ -2,6 +2,16 @@ import streamlit as st
 from random import randint
 import requests
 
+st.set_page_config(
+    page_title="Гербализм",
+    page_icon="🌱",
+)
+st.header("🌱 Гербализм")
+if (st.button("Короткие правила")):
+    st.write("Игрок должен пройти проверку Гербализма сложностью 15")
+    st.write("Модификатор Гербализма = **МДР / ИНТ + Профессиональный бонус**, если используется набор Гербалиста.")
+    st.write("Результат успешной добычи указывается ДМом, броском кубика 1d4 как много ингредиентов добыл игрок в этой местности в соответствии с Экосистемами.")
+
 TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/terrain_roll_tables.json"
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/plants_table.json"
 COMMON_TERRAIN_NAME = "Обычные"
@@ -44,11 +54,11 @@ def write_plant(plant_name_splited):
             quantity = randint(int(quantity[0]), int(quantity[1]))
         else:
             quantity = quantity[0]
-        st.text(f"{plant_name_splited[0]} {quantity}шт")
+        st.success(f"{plant_name_splited[0]} {quantity}шт")
         if len(plant_name_splited) > 2:
             st.text(plant_name_splited[2])
     else:
-        st.text(plant_name_splited[0])
+        st.success(plant_name_splited[0])
 
 def write_plant_other_description(plant_name_splited, plants_db):
     if (plant_name_splited[0] in plants_db):
