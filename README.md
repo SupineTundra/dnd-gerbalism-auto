@@ -1,6 +1,14 @@
 # Автоматизация гербализма DnD 5e
 Автоматический ролл по таблице Гербализма
 
+## Запуск
+Для запуска приложения достаточно установить зависимости и ввести команду:
+```
+streamlit run <путь_до_Herbalism.py>
+```
+
+
+### Источники
 Переведенный источник: https://dnd.su/homebrew/articles/homebrew/109-gerbalizm_i_alkhimiya/
 
 original source: https://i.4pcdn.org/tg/1457470779932.pdf
