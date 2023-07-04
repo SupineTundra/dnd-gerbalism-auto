@@ -6,7 +6,7 @@ st.set_page_config(
     page_title="Алхимия", 
     page_icon="⚗️"
 )
-st.header("⚗️ Алхимия WIP")
+st.header("⚗️ Алхимия (Пока в разработке)")
 
 
 
