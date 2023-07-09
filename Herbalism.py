@@ -63,13 +63,24 @@ def write_plant(plant_name_splited):
 def write_plant_other_description(plant_name_splited, plants_db):
     if (plant_name_splited[0] in plants_db):
         plant = PLANTS_TABLE[plant_name_splited[0]]
-        st.header("Описание")
-        st.write(plant["description"])
-        st.header("Эффект")
-        st.write(plant["effect"])
-        st.write(f'Сложность - {plant["difficulty"]}')
-        st.write(f'Редкость - {plant["rarity"]}')
-        st.write(f'Местности - {plant["terrain"]}')
+        #st.header("Описание")
+        type = plant["alch_type"]
+        if type == "magic": 
+            color = "blue"
+            type = "Магия"
+        if type == "potion": 
+            color = "red"
+            type = "Зелье"
+        if type == "poison": 
+            color = "green"
+            type = "Яд"
+        if type == "all":
+            color = "orange"
+            type = "Любой"
+        st.write(f":{color}[{type}]")
+        st.error(plant["effect"])
+        st.warning(plant["description"])
+        st.code(f'Сложность: {plant["difficulty"]} \nРедкость: {plant["rarity"]} \nМестности: {plant["terrain"]}')
 
 
 
