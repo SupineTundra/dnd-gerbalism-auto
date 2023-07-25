@@ -16,8 +16,8 @@ TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbal
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
 COMMON_TERRAIN_NAME = "Обычные"
 if st.checkbox("Homebrew"):
-    PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/terrain_roll_tables_homebrew.json"
-    TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table_homebrew.json"
+    TERRAIN_ROLL_TABLES_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/terrain_roll_tables_homebrew.json"
+    PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table_homebrew.json"
 
 TERRAIN_ROLL_TABLES = requests.get(TERRAIN_ROLL_TABLES_URL).json()
 PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
