@@ -29,7 +29,7 @@ def get_plants(alchemy_type, type):
     elif type == "effect": 
         effect = [""]
         for name, property in PLANTS_TABLE.items():
-            if property["alch_effect"] == "effect" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all") and name != "Кровьтрава":
+            if property["alch_effect"] == "effect" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all"):
                 effect.append(name)
         return effect
     else:
