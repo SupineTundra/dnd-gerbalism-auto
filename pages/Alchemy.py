@@ -12,8 +12,6 @@ POISON_NAME = "Яд"
 POTION_NAME = "Зелье"
 MAGIC_NAME = "Магическое зелье"
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
-if st.checkbox("Homebrew"):
-    PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table_homebrew.json"
 PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
 
 def get_plants(alchemy_type, type):
@@ -39,8 +37,8 @@ def get_plants(alchemy_type, type):
                 mod.append(name)
         return mod
 
-def write_properties(selected_effect, selected_mod = None):
-    difficulty = 10
+def write_properties(selected_effect, selected_mod = None, starter_difficulty = 10):
+    difficulty = starter_difficulty
     if selected_effect in PLANTS_TABLE:
         st.success(PLANTS_TABLE[selected_effect]["effect"])
         difficulty += PLANTS_TABLE[selected_effect]["difficulty"]
@@ -65,7 +63,7 @@ if __name__ == "__main__":
         effect.sort()
         st.selectbox('Базовый ингридент:', ["Элементальная вода"])
         selected_effect = st.selectbox('Основной ингридент:', effect)
-        write_properties(selected_effect)
+        write_properties(selected_effect, starter_difficulty=13)
     else:
         effect = get_plants(alchemy_type_eng, "effect")
         effect.sort()

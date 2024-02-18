@@ -8,8 +8,6 @@ st.set_page_config(
 st.header("🌿 Библиотека травника")
 
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
-if st.checkbox("Homebrew"):
-    PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table_homebrew.json"
 PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
 
 if __name__ == "__main__":
