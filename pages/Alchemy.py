@@ -66,7 +66,7 @@ if __name__ == "__main__":
         selected_effect = st.selectbox('Основной ингридент:', effect)
         write_properties(selected_effect, starter_difficulty=13)
     else:
-        effect = get_plants(alchemy_type_eng, "effect")
+        effect = get_plants(alchemy_type_eng, "effect", ["Кровьтрава"])
         effect.sort()
         bloodgrass = None
         if alchemy_type_eng == "potion":
