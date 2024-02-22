@@ -14,26 +14,27 @@ MAGIC_NAME = "Магическое зелье"
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
 PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
 
-def get_plants(alchemy_type, type):
+def get_plants(alchemy_type, type, blacklist = []):
     """alchemy_type - potion, poison или magic
     type - mod или effec
+    blacklist - лист трав, которые не надо отображать
     """
     if alchemy_type == "magic":
         magic = [""]
         for name, property in PLANTS_TABLE.items():
-            if property["alch_effect"] == "magic" and name != "Элементальная вода":
+            if property["alch_effect"] == "magic" and name != "Элементальная вода" and name not in blacklist:
                 magic.append(name)
         return magic
     elif type == "effect": 
         effect = [""]
         for name, property in PLANTS_TABLE.items():
-            if property["alch_effect"] == "effect" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all"):
+            if property["alch_effect"] == "effect" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all") and name not in blacklist:
                 effect.append(name)
         return effect
     else:
         mod = [""]
         for name, property in PLANTS_TABLE.items():
-            if property["alch_effect"] == "mod" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all"):
+            if property["alch_effect"] == "mod" and (property["alch_type"] == alchemy_type or property["alch_type"] == "all") and name not in blacklist:
                 mod.append(name)
         return mod
 
@@ -47,7 +48,7 @@ def write_properties(selected_effect, selected_mod = None, starter_difficulty = 
             if name in PLANTS_TABLE:
                 st.warning(PLANTS_TABLE[name]["effect"])
                 difficulty += PLANTS_TABLE[name]["difficulty"]
-    st.error(f"Сложнсоть создания - {difficulty}")
+    st.error(f"Сложность создания - {difficulty}")
 
 if __name__ == "__main__":
     alchemy_type = st.selectbox('Выбери тип:', (POTION_NAME, POISON_NAME, MAGIC_NAME))
@@ -67,8 +68,12 @@ if __name__ == "__main__":
     else:
         effect = get_plants(alchemy_type_eng, "effect")
         effect.sort()
+        bloodgrass = None
+        if alchemy_type_eng == "potion":
+            bloodgrass = st.checkbox("Кровьтрава")
         selected_effect = st.selectbox('Основной ингридент:', effect)
         mod = get_plants(alchemy_type_eng, "mod")
         mod.sort()
         selected_mod = [st.selectbox('Модификатор 1:', mod), st.selectbox('Модификатор 2:', mod), st.selectbox('Модификатор 3:', mod)]
+        if bloodgrass: selected_mod.insert(0, 'Кровьтрава')
         write_properties(selected_effect, selected_mod)
