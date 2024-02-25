@@ -1,11 +1,12 @@
 import streamlit as st
 from random import randint
 import requests
-
+from scripts.sidebar import init_sidebar
 st.set_page_config(
     page_title="Гербализм",
     page_icon="🌱",
 )
+init_sidebar()
 st.header("🌱 Гербализм")
 if (st.button("Короткие правила")):
     st.write("Игрок должен пройти проверку Гербализма сложностью 15")

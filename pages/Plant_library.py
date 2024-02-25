@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
-
+from scripts.sidebar import init_sidebar
 st.set_page_config(
     page_title="Библиотека", 
     page_icon="🌿"
 )
+init_sidebar()
 st.header("🌿 Библиотека травника")
 
 PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"

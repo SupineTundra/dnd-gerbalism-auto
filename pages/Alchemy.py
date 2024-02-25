@@ -1,11 +1,12 @@
 import streamlit as st
 from random import randint
 import requests
-
+from scripts.sidebar import init_sidebar
 st.set_page_config(
     page_title="Алхимия", 
     page_icon="⚗️"
 )
+init_sidebar()
 st.header("⚗️ Алхимия")
 
 POISON_NAME = "Яд"
