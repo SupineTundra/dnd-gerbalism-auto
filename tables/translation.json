@@ -1,0 +1,23 @@
+{
+    "ru": {
+        "pages": {
+            "herbalism": "🌱 Гербализм",
+            "alchemy": "⚗️ Алхимия",
+            "plant_library": "🌿 Библиотека травника",
+            "potion_randomizer": "🧪 Случайное зелье",
+            "feedback": "📖 Обратная связь"
+        }
+    },
+    "en": {
+        "pages": {
+            "herbalism": "🌱 Herbalism",
+            "alchemy": "⚗️ Alchemy",
+            "plant_library": "🌿 Herbalist Library",
+            "potion_randomizer": "🧪 Random Potion",
+            "feedback": "📖 Feedback"
+        }
+    },
+    "es": {
+
+    }
+}

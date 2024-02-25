@@ -1,14 +1,14 @@
 import streamlit as st
 from random import randint
 import requests
-
+from scripts.sidebar import init_sidebar
 POTION_RANDOMIZER_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/potion_randomizer.json"
 POTION_RANDOMIZER_TABLE = requests.get(POTION_RANDOMIZER_TABLE_URL).json()
-
 st.set_page_config(
     page_title="Рандомное зелье", 
     page_icon="🧪"
 )
+init_sidebar()
 st.header("🧪 Рандомное зелье")
 st.write("Тут можно зароллить свойства зелья для его описания")
 st.write("Источник: https://tentaculus.ru/archive/tables/random_potions.html")
