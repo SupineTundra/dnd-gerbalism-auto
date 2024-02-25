@@ -4,9 +4,9 @@ import json
 TRANSLATION = {}
 links = {
     "herbalism": "Herbalism.py",
-    "alchemy": "pages/alchemy.py",
-    "plant_library": "pages/plant_library.py",
-    "potion_randomizer": "pages/potion_randomizer.py",
+    "alchemy": "pages/Alchemy.py",
+    "plant_library": "pages/Plant_library.py",
+    "potion_randomizer": "pages/Potion_randomizer.py",
     "feedback": "pages/feedback.py"
 }
 with open("tables/translation.json", "r") as j:
