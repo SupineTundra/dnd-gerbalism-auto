@@ -617,7 +617,7 @@
             "roll": "Roll!"
         },
         "text": {
-            "herbalism_rule": ""
+            "herbalism_rule": "Player must roll DC 15 Herbalism check.\n\n**Herbalism Modifier** = WIS or INT Modifier + Proficiency Bonus if using a Herbalism Kit you're proficient with.\n\nA successful gathering attempt would result in the DM rolling 1d4 for how many ingredients were gathered."
         }
     },
     "es": {
