@@ -1,33 +1,40 @@
 import streamlit as st
-import requests
-from scripts.sidebar import init_sidebar
+import json
+from scripts.sidebar import init_sidebar, TRANSLATION
 st.set_page_config(
-    page_title="Библиотека", 
+    page_title="Library", 
     page_icon="🌿"
 )
 init_sidebar()
-st.header("🌿 Библиотека травника")
-
-PLANTS_TABLE_URL = "https://raw.githubusercontent.com/Zendelll/dnd-gerbalism-auto/master/tables/plants_table.json"
-PLANTS_TABLE = requests.get(PLANTS_TABLE_URL).json()
+PLANTS = {}
+TRANSLATION = TRANSLATION[st.session_state["lang"]]
+lang_key_words = TRANSLATION["key_words"]
+lang_plants = TRANSLATION["plants"]
+with open("tables/plants_table_new.json", "r") as j:
+    PLANTS = json.load(j)
 
 if __name__ == "__main__":
-    plant_name = st.selectbox('Растение:', dict(sorted(PLANTS_TABLE.items())))
-    type = PLANTS_TABLE[plant_name]["alch_type"]
-    if type == "magic": 
+    st.header(TRANSLATION["pages"]["plant_library"])
+    plant_name = st.selectbox(lang_key_words["plant"], dict(sorted(PLANTS.items())), format_func=lambda plant_key: lang_plants[plant_key]["name"])
+    plant = PLANTS[plant_name]
+    type = plant["type"]
+    if "magic" in type: 
         color = "blue"
-        type = "Магия"
-    if type == "potion": 
+        type = TRANSLATION["key_words"]["potion_type"]["magic"]
+    if "potion" in type: 
         color = "red"
-        type = "Зелье"
-    if type == "poison": 
+        type = TRANSLATION["key_words"]["potion_type"]["potion"]
+    if "poison" in type: 
         color = "green"
-        type = "Яд"
-    if type == "all":
+        type = TRANSLATION["key_words"]["potion_type"]["poison"]
+    if "all" in type:
         color = "orange"
-        type = "Любой"
+        type = TRANSLATION["key_words"]["potion_type"]["all"]
     st.write(f":{color}[{type}]")
-    st.success(PLANTS_TABLE[plant_name]["effect"])
-    st.warning(PLANTS_TABLE[plant_name]["description"])
-    st.code(f'Сложность: {PLANTS_TABLE[plant_name]["difficulty"]} \nРедкость: {PLANTS_TABLE[plant_name]["rarity"]} \nМестности: {PLANTS_TABLE[plant_name]["terrain"]}')
+    st.success(lang_plants[plant_name]["effect_description"])
+    st.warning(lang_plants[plant_name]["description"])
+    terrains = (str)(plant["terrain"]).split(", ")
+    translated_terrains = []
+    for terrain in terrains: translated_terrains.append(TRANSLATION["key_words"]["terrain"][terrain])
+    st.code(f'{TRANSLATION["key_words"]["difficulty"]}: {plant["difficulty"]} \n{TRANSLATION["key_words"]["rarity"]["rarity"]}: {TRANSLATION["key_words"]["rarity"][plant["rarity"]]} \n{TRANSLATION["key_words"]["terrain"]["terrain"]}: {", ".join(translated_terrains)}')
     
