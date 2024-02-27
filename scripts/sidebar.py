@@ -1,6 +1,18 @@
 import streamlit as st
 import json
 
+# Effects:
+# "dice_type", "effect_addition": "+1" - dice type +1 (1d4 -> 1d6)
+# "dice_quantity", "effect_addition": "x2" - dice quantity x2 (4d6 -> 8d6)
+# "dice_quantity_nomod", "effect_addition": "x2" - dice quantity x2 (4d6 -> 8d6)
+# "dice_quantity_lowduration", "effect_addition": "x2" - dice quantity x2 (4d6 -> 8d6)
+# "damage_change" - damage change (have "damage_type") (poison to necrotic) 
+# "first_component" - first component
+# "last_component" - last component
+# "modifier" - modifier
+# "base_with_damage" - base with damage (have "damage", "mod", "damage_type" fields)
+# "base_static" - base static (can not be altered by other ingridients)
+# "base_alterable" - base alterable (can be altered)
 TRANSLATION = {}
 
 links = {
