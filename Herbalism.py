@@ -10,10 +10,10 @@ init_sidebar()
 PLANTS = {}
 TERRAIN = {}
 TRANSLATION = TRANSLATION[st.session_state["lang"]]
-with open("tables/plants_table_new.json", "r") as j:
-    PLANTS = json.load(j)
-with open("tables/terrain_table.json", "r") as j:
-    TERRAIN = json.load(j)
+lang_key_words = TRANSLATION["key_words"]
+lang_plants = TRANSLATION["plants"]
+with open("tables/plants_table_new.json", "r") as j: PLANTS = json.load(j)
+with open("tables/terrain_table.json", "r") as j: TERRAIN = json.load(j)
 
 def roll(dice):
     "dice - строка типа \"8d12\", где 8 - количество дайсов, а 12 - тип"
@@ -28,7 +28,7 @@ def terrain_selector(tables_dict):
     for name, table in tables_dict.items():
         if name != "common":
             terrain_names.append(name)
-    return st.selectbox(label = TRANSLATION["key_words"]["terrain"]["terrain"], options = terrain_names, format_func = lambda terrain_key: TRANSLATION["key_words"]["terrain"][terrain_key])
+    return st.selectbox(label = lang_key_words["terrain"]["terrain"], options = terrain_names, format_func = lambda terrain_key: lang_key_words["terrain"][terrain_key])
 
 def roll_for_plant(selected_terrain):
     roll_result = int(roll("2d6"))
@@ -43,7 +43,7 @@ def roll_for_plant(selected_terrain):
 
 def write_plant(plant_name_splited):
     #1 - название, 2 - количество, 3 - дополнительная информация
-    plant_name = TRANSLATION["plants"][plant_name_splited[0]]["name"]
+    plant_name = lang_plants[plant_name_splited[0]]["name"]
     if len(plant_name_splited) > 1:
         quantity = plant_name_splited[1].split("-")
         if len(quantity) > 1:
@@ -61,28 +61,27 @@ def write_plant(plant_name_splited):
     type = plant["type"]
     if "magic" in type: 
         color = "blue"
-        type = TRANSLATION["key_words"]["potion_type"]["magic"]
+        type = lang_key_words["potion_type"]["magic"]
     if "potion" in type: 
         color = "red"
-        type = TRANSLATION["key_words"]["potion_type"]["potion"]
+        type = lang_key_words["potion_type"]["potion"]
     if "poison" in type: 
         color = "green"
-        type = TRANSLATION["key_words"]["potion_type"]["poison"]
+        type = lang_key_words["potion_type"]["poison"]
     if "all" in type:
         color = "orange"
-        type = TRANSLATION["key_words"]["potion_type"]["all"]
+        type = lang_key_words["potion_type"]["all"]
     st.write(f":{color}[{type}]")
     st.error(plant_desc["effect_description"])
     st.warning(plant_desc["description"])
     terrains = (str)(plant["terrain"]).split(", ")
     translated_terrains = []
-    for terrain in terrains: translated_terrains.append(TRANSLATION["key_words"]["terrain"][terrain])
-    st.code(f'{TRANSLATION["key_words"]["difficulty"]}: {plant["difficulty"]} \n{TRANSLATION["key_words"]["rarity"]["rarity"]}: {TRANSLATION["key_words"]["rarity"][plant["rarity"]]} \n{TRANSLATION["key_words"]["terrain"]["terrain"]}: {", ".join(translated_terrains)}')
+    for terrain in terrains: translated_terrains.append(lang_key_words["terrain"][terrain])
+    st.code(f'{lang_key_words["difficulty"]}: {plant["difficulty"]} \n{lang_key_words["rarity"]["rarity"]}: {lang_key_words["rarity"][plant["rarity"]]} \n{lang_key_words["terrain"]["terrain"]}: {", ".join(translated_terrains)}')
 
 if __name__ == "__main__":
     st.header(TRANSLATION["pages"]["herbalism"])
-    if (st.button(TRANSLATION["buttons"]["short_rules"])):
-        st.markdown(TRANSLATION["text"]["herbalism_rule"])
+    st.markdown(f'<details><summary>{TRANSLATION["buttons"]["short_rules"]}</summary>' + TRANSLATION["text"]["herbalism_rule"] + "</details>", unsafe_allow_html=True)
     selected_terrain = terrain_selector(TERRAIN)
     if st.button(TRANSLATION["buttons"]["roll"]):
         plant_name = roll_for_plant(selected_terrain)
